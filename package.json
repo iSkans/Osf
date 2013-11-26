@@ -1,0 +1,22 @@
+ {
+    "name": "osf",
+    "version": "3.0.0",
+    "_id": "osf@3.0.0",
+    "_from": "osf@3.0.0",
+    "description": "Opensource Framework for Nodejs.",
+    "keywords": [
+        "util",
+        "functional",
+        "server",
+        "client",
+        "browser"
+    ],
+    "author": {
+        "name": "Melo",
+        "email": "melo@iskans.com"
+    },
+    "main": "./index.js",
+    "files": [
+        "index.js"
+    ]
+}
