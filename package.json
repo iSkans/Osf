@@ -2,7 +2,7 @@
     "name": "osf",
     "version": "3.0.0",
     "_id": "osf@3.0.0",
-    "_from": "osf@latest",
+    "_from": ".",
     "description": "Opensource Framework for Nodejs.",
     "keywords": [
         "util",
