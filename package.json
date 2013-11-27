@@ -15,8 +15,5 @@
         "name": "Melo",
         "email": "melo@iskans.com"
     },
-    "main": "./index.js",
-    "files": [
-        "index.js"
-    ]
+    "main": "./index.js"
 }
