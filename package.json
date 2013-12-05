@@ -15,5 +15,6 @@
         "name": "Melo",
         "email": "melo@iskans.com"
     },
-    "main": "./index.js"
+    "main": "./index.js",
+    "repository": "git://github.com/iSkansTeam/Mangakas.git#3.0.0-www"
 }
