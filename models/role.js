@@ -1,30 +1,43 @@
 /**
  * Requierements
  */
-var mongoose = require('mongoose'),
+var Osf = require('osf'),
+    mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 /**
  * Object.
  */
 var Role = {
-    schema : new Schema({
+    schema: new Schema({
+        type: {
+            type: String,
+            enum: ["system", "user"]
+        },
         name: {
             type: String,
-            trim: true
+            trim: true,
+            unique: true,
+            set: Osf.string.lowercase
         },
         description: {
             type: String,
-            trim: true
+            trim: true,
+            set: Osf.string.ucfirst
         },
-        type: {
-            type: String,
-            enum: ["system","user"]
-        }
+        resources: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'acl-resource'
+            }
+        ]
     }, {
-        collection: 'acl-roles'
+        collection: 'acl-roles',
+        versionKey : false
     })
 };
+
+Role.schema.index({type: 1});
 
 /**
  * Export Model & Schema.

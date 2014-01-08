@@ -1,7 +1,8 @@
 /**
  * Requierements
  */
-var mongoose = require('mongoose'),
+var Osf = require('osf'),
+    mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 /**
@@ -10,17 +11,32 @@ var mongoose = require('mongoose'),
 var Account = {
     schema: new Schema({
         primary: {
-            type: Boolean
+            type: Boolean,
+            default: false
         },
         email: {
             type: String,
-            trim: true
+            trim: true,
+            unique: true,
+            required: true,
+            set: Osf.string.lowercase
         },
-        activated: {
+        username: {
             type: String
         },
+        domain: {
+            type: String
+        },
+        activation: {
+            key : String,
+            value : {
+                type: Boolean,
+                default: false
+            }
+        },
         invited: {
-            type: Boolean
+            type: Boolean,
+            default: false
         },
         added: {
             type: Date
@@ -29,34 +45,38 @@ var Account = {
             type: Date
         }
     }, {
-        collection: 'accounts'
-    })  ,
-    virtual: {
-        username : function () {
-            if (0 < this.email.length) {
-                var username = this.email.replace(/@.*/,"");
-                if(this.email === username){
-                    return;
-                }
-                return username;
-            }
-            return;
-        },
-        domain : function () {
-            if (0 < this.email.length) {
-                var domain = this.email.replace(/.*@/,"");
-                if(this.email === domain){
-                    return;
-                }
-                return domain;
-            }
-            return;
+        collection: 'accounts',
+        versionKey : false
+    })
+};
+
+/**
+ * Auto update created and updated Dates
+ */
+Account.schema.pre('save', function(next){
+    this.updated = new Date();
+    if(!this.created){
+        this.created = new Date();
+    }
+
+    if (0 < this.email.length) {
+        var username = this.email.replace(/@.*/,"");
+        if(this.email !== username){
+            this.username =  username;
         }
     }
-};
+
+    if (0 < this.email.length) {
+        var domain = this.email.replace(/.*@/,"");
+        if(this.email !== domain){
+            this.domain = domain;
+        }
+    }
+    next();
+});
 
 /**
  * Export Model & Schema.
  */
-mongoose.model('accounts', Account.schema);
+mongoose.model('account', Account.schema);
 exports.schema = Account.schema;

@@ -7,11 +7,12 @@ var mongoose = require('mongoose'),
 /**
  * Object.
  */
-var Ressource = {
+var Resource = {
     schema : new Schema({
-        path: {
+        cache: {
             type: String,
-            trim: true
+            trim: true,
+            unique : true
         },
         site: {
             type: String,
@@ -30,12 +31,15 @@ var Ressource = {
             trim: true
         }
     }, {
-        collection: 'acl-ressources'
+        collection: 'acl-resources',
+        versionKey : false
     })
 };
+
+Resource.schema.index({site: 1});
 
 /**
  * Export Model & Schema.
  */
-mongoose.model('acl-ressource', Ressource.schema);
-exports.schema = Ressource.schema;
+mongoose.model('acl-resource', Resource.schema);
+exports.schema = Resource.schema;
