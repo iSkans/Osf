@@ -10,6 +10,13 @@ var Osf = require('osf'),
  */
 var Person = {
     schema: new Schema({
+        //Domain when the person registered
+        domain: {
+            type: String,
+            trim: true,
+            set: Osf.string.lowercase
+        },
+
         // Username of the person.
         username: {
             type: String,
@@ -53,6 +60,20 @@ var Person = {
         versionKey: false
     })
 };
+
+Person.schema.virtual('isAdmin').get(function () {
+    var idx = 0;
+    for(idx; idx < this.roles.length; idx++){
+        if (this.roles[idx] instanceof Object &&
+            typeof(this.roles[idx].name) !== "undefined" &&
+            typeof(this.roles[idx].type) !== "undefined" &&
+            this.roles[idx].name === "administrator" &&
+            this.roles[idx].type === "system") {
+            return true;
+        }
+    }
+    return false;
+});
 
 /**
  * Export Model & Schema.
