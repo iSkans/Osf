@@ -11,8 +11,10 @@ var Osf = require('osf'),
 var Account = {
     schema: new Schema({
         primary: {
-            type: Boolean,
-            default: false
+            type: Number,
+            default: 0,
+            min : 0,
+            max : 1
         },
         email: {
             type: String,
@@ -30,13 +32,17 @@ var Account = {
         activation: {
             key : String,
             value : {
-                type: Boolean,
-                default: false
+                type: Number,
+                default: 0,
+                min : 0,
+                max : 1
             }
         },
         invited: {
-            type: Boolean,
-            default: false
+            type: Number,
+            default: 0,
+            min : 0,
+            max : 1
         },
         added: {
             type: Date

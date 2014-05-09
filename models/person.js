@@ -39,8 +39,10 @@ var Person = {
 
         // Person is disabled.
         disabled: {
-            type: Boolean,
-            default: false
+            type: Number,
+            default: 0,
+            min : 0,
+            max : 1
         },
 
         // Recovery key for change password.
