@@ -56,7 +56,13 @@ var Person = {
                 type: Schema.Types.ObjectId,
                 ref: 'acl-role'
             }
-        ]
+        ],
+        created: {
+            type: Date
+        },
+        updated: {
+            type: Date
+        }
     }, {
         collection: 'persons',
         versionKey: false
@@ -76,6 +82,35 @@ Person.schema.virtual('isAdmin').get(function () {
     }
     return false;
 });
+
+/**
+ * Auto update created and updated Dates
+ */
+Person.schema.pre('save', function(next){
+    this.updated = new Date();
+    if(!this.created){
+        this.created = new Date();
+    }
+    next();
+});
+
+/**
+ * Auto delete associated accounts
+ */
+Person.schema.pre('remove', function(next) {
+    var Account = mongoose.model('account');
+    Account.remove({
+        _id: {
+            "$in": this.accounts
+        }
+    },function(err, removedAccounts) {
+        if (err) {
+            return next(Osf.error.msg(err));
+        }
+        return next(null,removedAccounts);
+    });
+});
+
 
 /**
  * Export Model & Schema.

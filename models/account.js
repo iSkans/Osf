@@ -47,6 +47,9 @@ var Account = {
         added: {
             type: Date
         },
+        created: {
+            type: Date
+        },
         updated: {
             type: Date
         }
