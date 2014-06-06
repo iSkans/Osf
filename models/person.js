@@ -17,8 +17,49 @@ var Person = {
             set: Osf.string.lowercase
         },
 
+        // Unique Identifier of person.
+        uid: {
+            type: Number,
+            default: 0
+        },
+
         // Username of the person.
         username: {
+            type: String,
+            trim: true,
+            set: Osf.string.ucfirst
+        },
+
+        // First name of the person.
+        firstname: {
+            type: String,
+            trim: true,
+            set: Osf.string.ucfirst
+        },
+
+        // First name of the person.
+        lastname: {
+            type: String,
+            trim: true,
+            set: Osf.string.ucfirst
+        },
+
+        // Birthday of the person.
+        birthday: {
+            type: String,
+            trim: true,
+            set: Osf.string.ucfirst
+        },
+
+        // Gender of the person.
+        gender: {
+            type: String,
+            enum : ["male","female","undisclosed"],
+            default : "undisclosed"
+        },
+
+        // Presentation of the person.
+        aboutme: {
             type: String,
             trim: true,
             set: Osf.string.ucfirst
