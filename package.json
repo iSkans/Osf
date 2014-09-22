@@ -1,8 +1,8 @@
  {
     "name": "osf",
-    "version": "3.0.1",
-    "_id": "osf@3.0.1",
-    "_from": "osf@3.0.1",
+    "version": "3.0.2",
+    "_id": "osf@3.0.2",
+    "_from": "osf@3.0.2",
     "description": "Opensource Framework for Nodejs.",
     "keywords": [
         "util",
