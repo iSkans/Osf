@@ -1,4 +1,4 @@
- {
+{
     "name": "osf",
     "version": "3.0.2",
     "_id": "osf@3.0.2",
@@ -11,13 +11,17 @@
         "client",
         "browser"
     ],
-     "dependencies": {
-         "parseurl": "1.0.1",
-         "send": "0.3.0"
-     },
+    "dependencies": {
+        "parseurl": "1.0.1",
+        "send": "0.3.0"
+    },
     "author": {
         "name": "Melo",
         "email": "melo@iskans.com"
     },
-    "main": "./index.js"
+    "main": "./index.js",
+    "repository": "git://github.com/iSkans/Osf",
+    "bugs": {
+        "url": "http://github.com/iSkansTeam/mangakas/issues"
+    }
 }
